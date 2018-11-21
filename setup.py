@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 from setuptools import setup, find_packages
-import nvchecker
 
 # The complex upload command:
 # rm -rf dist && python setup.py sdist && twine check dist/* && twine upload -s dist/*
 
 setup(
   name = 'nvchecker',
-  version = nvchecker.__version__,
+  use_scm_version = True,
   author = 'lilydjwg',
   author_email = 'lilydjwg@gmail.com',
   description = 'New version checker for software',
@@ -21,6 +20,7 @@ setup(
   zip_safe = False,
 
   packages = find_packages(exclude=["tests"]),
+  setup_requires = ['setuptools_scm'],
   install_requires = ['setuptools', 'structlog', 'tornado', 'pycurl'],
   extras_require = {
     'vercmp': ['pyalpm'],

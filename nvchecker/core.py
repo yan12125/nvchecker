@@ -8,14 +8,13 @@ import configparser
 import asyncio
 import logging
 
+import pkg_resources
 import structlog
 
 from .lib import nicelogger
 from .get_version import get_version
 from .source import session
 from . import slogconf
-
-from . import __version__
 
 logger = structlog.get_logger(logger_name=__name__)
 
@@ -68,7 +67,8 @@ def process_common_arguments(args):
 
   if args.version:
     progname = os.path.basename(sys.argv[0])
-    print('%s v%s' % (progname, __version__))
+    version = version = pkg_resources.require('nvchecker')[0].version
+    print('%s v%s' % (progname, version))
     return True
 
 def safe_overwrite(fname, data, *, method='write', mode='w', encoding=None):
