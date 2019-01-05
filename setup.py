@@ -29,6 +29,7 @@ setup(
     'pytest',
     'pytest-asyncio',
     'pytest-xdist',
+    'pytest-cov',
     'flaky',
   ],
   entry_points = {
