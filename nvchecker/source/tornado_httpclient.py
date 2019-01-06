@@ -2,6 +2,7 @@
 # Copyright (c) 2013-2017 lilydjwg <lilydjwg@gmail.com>, et al.
 
 import json
+import os
 from urllib.parse import urlencode
 
 from tornado.httpclient import AsyncHTTPClient, HTTPRequest, HTTPResponse
@@ -33,6 +34,8 @@ def try_use_http2(curl):
 
 class Session:
   def get(self, url, **kwargs):
+    if os.getenv('SOURCE_DATE_EPOCH'):
+      kwargs['validate_cert'] = False
     kwargs['prepare_curl_callback'] = try_use_http2
 
     proxy = kwargs.get('proxy')
