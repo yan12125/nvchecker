@@ -16,9 +16,9 @@ async def test_container(get_version):
   }) == "linux"
 
 async def test_container_with_tag(get_version):
-  update_time = await get_version("bitnami/mongodb:5.0", {
+  update_time = await get_version("yan12125/nodpa:latest", {
     "source": "container",
-    "container": "bitnami/mongodb:5.0",
+    "container": "yan12125/nodpa:latest",
   })
   # the update time is changing occasionally, so we can not compare the exact time, otherwise the test will be failed in the future
   assert datetime.date.fromisoformat(update_time.split('T')[0]) > datetime.date(2023, 12, 1)
